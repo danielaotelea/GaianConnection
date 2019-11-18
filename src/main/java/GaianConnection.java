@@ -166,7 +166,11 @@ public class GaianConnection extends Thread {
         while (rs.next()) {
             Vector<String> vector = new Vector<String>();
             for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
-                vector.addElement(rs.getObject(columnIndex).toString());
+                if(rs.getObject(columnIndex) == null){
+                    vector.addElement("-");
+                } else {
+                    vector.addElement(rs.getObject(columnIndex).toString());
+                }
             }
             data.addElement(vector);
         }
